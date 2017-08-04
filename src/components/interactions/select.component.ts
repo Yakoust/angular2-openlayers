@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { interaction, EventsConditionType, layer, style, Collection, SelectFilterFunction, StyleFunction, Feature } from 'openlayers';
-import { MapComponent } from 'angular2-openlayers';
+import { MapComponent } from '../map.component';
 
 @Component({
     selector: 'aol-interaction-select',

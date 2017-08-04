@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { interaction, EventsConditionType, DragBoxEndConditionType, style, StyleFunction, Collection, Feature } from 'openlayers';
-import { MapComponent } from 'angular2-openlayers';
+import { interaction, EventsConditionType, style, StyleFunction, Collection, Feature } from 'openlayers';
+import { MapComponent } from '../map.component';
 
 @Component({
     selector: 'aol-interaction-modify',

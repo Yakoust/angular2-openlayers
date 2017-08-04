@@ -1,47 +1,40 @@
-<aol-map #map [width]="'100%'" [height]="'100%'">
-	<aol-interaction-default></aol-interaction-default>
-	<aol-interaction-translate *ngIf="isTranslateMode" [features]="features"></aol-interaction-translate>
-	<aol-interaction-draw *ngIf="isCreateMode && type === 'Circle'" type="Circle" [source]="sourceVector.instance" [features]="features"></aol-interaction-draw>
-	<aol-interaction-draw *ngIf="isCreateMode && type === 'Polygon'" type="Polygon" [source]="sourceVector.instance" [features]="features"></aol-interaction-draw>
-	<aol-interaction-draw *ngIf="isCreateMode && type === 'LineString'" type="LineString" [source]="sourceVector.instance" [features]="features"></aol-interaction-draw>
-	<aol-interaction-draw *ngIf="isCreateMode && type === 'Point'" type="Point" [source]="sourceVector.instance" [features]="features"></aol-interaction-draw>
-	<aol-interaction-select *ngIf="isSelectMode"></aol-interaction-select>
-	<aol-interaction-modify *ngIf="isEditMode" [features]="features"></aol-interaction-modify>
-	<aol-interaction-draganddrop #dragAndDropInteraction [formatConstructors]="dragDropConstructors" [projection]="'EPSG:3875'"></aol-interaction-draganddrop>
+<aol-map [width]="'100%'" [height]="'100%'">
 	<aol-view [zoom]="zoom">
 		<aol-coordinate [x]="5" [y]="45" [srid]="'EPSG:4326'"></aol-coordinate>
 	</aol-view>
 	<aol-layer-tile [opacity]="opacity">
-		<aol-source-osm></aol-source-osm>
+    <aol-source-osm></aol-source-osm>
 	</aol-layer-tile>
-	<aol-layer-vector #layer [opacity]="opacity">
-		<aol-source-vector #sourceVector >
+	<aol-layer-vector [opacity]="opacity">
+		<aol-source-vector>
+			<aol-feature>
+				<aol-geometry-point>
+					<aol-coordinate [x]="5" [y]="45" [srid]="'EPSG:4326'"></aol-coordinate>
+				</aol-geometry-point>
+				<aol-style>
+					<aol-style-circle [radius]="10">
+						<aol-style-stroke [color]="'black'" [width]="width"></aol-style-stroke>
+						<aol-style-fill [color]="'green'"></aol-style-fill>
+					</aol-style-circle>
+				</aol-style>
+			</aol-feature>
+			<aol-feature>
+				<aol-geometry-point>
+					<aol-coordinate [x]="5.1" [y]="45.1" [srid]="'EPSG:4326'"></aol-coordinate>
+				</aol-geometry-point>
+				<aol-style>
+	        <aol-style-icon
+	          [src]="'assets/marker.png'"
+	          [anchor]="[0.5, 1]"
+	          [anchorXUnits]="'fraction'" [anchorYUnits]="'fraction'"
+	          [scale]="0.1"
+	          [anchorOrigin]="'top-left'">
+	        </aol-style-icon>
+	      </aol-style>
+	    </aol-feature>
 		</aol-source-vector>
 	</aol-layer-vector>
 </aol-map>
-<div class="controls-layout">
-	<button md-mini-fab (click)="setSelectMode()" *ngIf="features.getLength() > 0 && !isCreateMode && !isSelectMode && !isEditMode && !isTranslateMode"><md-icon>pan_tool</md-icon></button>
-	<md-button-toggle-group *ngIf="isCreateMode" #group="mdButtonToggleGroup" vertical="true" [(ngModel)]="type">
-		<md-button-toggle value="Circle" mdTooltip="Circle" mdTooltipPosition="left" checked="true">
-			<md-icon>panorama_fish_eye</md-icon>
-		</md-button-toggle>
-		<md-button-toggle value="Polygon" mdTooltip="Polygon" mdTooltipPosition="left">
-			<md-icon>crop_square</md-icon>
-		</md-button-toggle>
-		<md-button-toggle value="LineString" mdTooltip="Line string" mdTooltipPosition="left">
-			<md-icon>timeline</md-icon>
-		</md-button-toggle>
-		<md-button-toggle value="Point" mdTooltip="Point" mdTooltipPosition="left">
-			<md-icon>pin_drop</md-icon>
-		</md-button-toggle>
-	</md-button-toggle-group>
-	<button md-mini-fab (click)="unsetSelectMode()" *ngIf="isSelectMode" class="close-btn"><md-icon>close</md-icon></button>
-	<button md-mini-fab (click)="endCreateMode()" *ngIf="isCreateMode" class="close-btn"><md-icon>close</md-icon></button>
-	<button md-mini-fab (click)="endEditMode()" *ngIf="isEditMode" class="close-btn"><md-icon>close</md-icon></button>
-	<button md-mini-fab (click)="endTranslateMode()" *ngIf="isTranslateMode" class="close-btn"><md-icon>close</md-icon></button>
-	<button md-mini-fab (click)="setCreateMode()" *ngIf="!isCreateMode && !isSelectMode && !isEditMode && !isTranslateMode"><md-icon>add_circle</md-icon></button>
-	<button md-mini-fab (click)="setEditMode()" *ngIf="features.getLength() > 0 && !isCreateMode && !isSelectMode && !isEditMode && !isTranslateMode"><md-icon>create</md-icon></button>
-	<button md-mini-fab (click)="setTranslateMode()" *ngIf="features.getLength() > 0 && !isCreateMode && !isSelectMode && !isEditMode && !isTranslateMode"><md-icon>games</md-icon></button>
-	<button md-mini-fab (click)="increaseZoom()"><md-icon>zoom_in</md-icon></button>
-	<button md-mini-fab (click)="decreaseZoom()"><md-icon>zoom_out</md-icon></button>
-</div>
+
+<span>opacity:</span><button (click)="increaseOpacity()">+</button><button (click)="decreaseOpacity()">-</button><br>
+<span>zoom:</span><button (click)="increaseZoom()">+</button><button (click)="decreaseZoom()">-</button><br>
