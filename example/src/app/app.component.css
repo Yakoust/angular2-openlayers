@@ -1,0 +1,29 @@
+.controls-layout {
+    position: absolute;
+    right: 1%;
+    top: 1%;
+}
+
+.mat-mini-fab {
+    background: #408fff;
+}
+
+.close-btn {    
+    background: red;
+    color: white;
+}
+
+.mat-icon {
+    color: white;
+}
+
+.mat-button-toggle-group {
+        top: -8px;
+    background: #408fff;
+}.mat-button-toggle-checked {
+    background-color: white !important;
+}
+.mat-button-toggle-checked .mat-icon{
+    background-color: white !important;
+    color: #408fff !important;
+}

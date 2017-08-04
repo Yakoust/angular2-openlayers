@@ -3,14 +3,25 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AngularOpenlayersModule } from 'angular2-openlayers';
-
+import { ModifyInteractionComponent } from '../components/modify.component';
+import { SelectInteractionComponent } from '../components/select.component';
+import { TranslateInteractionComponent } from '../components/translate.component';
+import {
+  MdButtonModule, MdIconModule, MdButtonToggleModule, MdTooltipModule,
+  StyleModule
+} from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import 'hammerjs';
 import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ModifyInteractionComponent,
+    SelectInteractionComponent,
+    TranslateInteractionComponent
   ],
-  imports: [
+  imports: [BrowserAnimationsModule, MdButtonModule, MdIconModule, MdButtonToggleModule, StyleModule, MdTooltipModule,
     BrowserModule,
     FormsModule,
     HttpModule,
